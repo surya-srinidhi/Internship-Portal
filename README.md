@@ -13,11 +13,11 @@ A premium, fully-featured Internship Management Tracking Portal built with Djang
 
 ## ✨ Key Features
 
-- **💼 Role-Based Dashboards**: Independent portals tailored uniquely for Students (to track their applied jobs) and Admins (to shortlist/reject candidates).
-- **🎨 Premium UI/UX**: Custom-built CSS library employing modern design systems including dynamic hovering, frosted glass UI components, and fluid animations.
-- **✉️ Automated Email Notifications**: Fully integrated Google SMTP functionality. Generates instant confirmation emails and status updates (Shortlisted/Rejected).
-- **📄 Resume Parsing**: Upload and securely store PDF resumes directly through the portal during the application phase.
-- **🛡️ Secure Auth System**: Django-backed authentication and route protection.
+- ** Role-Based Dashboards**: Independent portals tailored uniquely for Students (to track their applied jobs) and Admins (to shortlist/reject candidates).
+- ** Premium UI/UX**: Custom-built CSS library employing modern design systems including dynamic hovering, frosted glass UI components, and fluid animations.
+- ** Automated Email Notifications**: Fully integrated Google SMTP functionality. Generates instant confirmation emails and status updates (Shortlisted/Rejected).
+- ** Resume Parsing**: Upload and securely store PDF resumes directly through the portal during the application phase.
+- ** Secure Auth System**: Django-backed authentication and route protection.
 
 ---
 
