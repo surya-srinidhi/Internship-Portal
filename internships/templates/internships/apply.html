@@ -1,0 +1,44 @@
+{% extends 'internships/base.html' %}
+
+{% block content %}
+<div class="container" style="max-width: 800px;">
+    <a href="{% url 'internships:detail' internship.pk %}" class="btn btn-secondary btn-sm mb-4"><i class='bx bx-left-arrow-alt'></i> Back</a>
+    
+    <div class="glass-card">
+        <div class="mb-4 text-center">
+            <h2 class="mb-1">Apply for <span class="text-gradient">{{ internship.title }}</span></h2>
+            <p class="text-muted">at {{ internship.company.name }}</p>
+        </div>
+        
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="id_resume" class="form-label">Upload Resume (PDF only)</label>
+                {{ form.resume }}
+                {% if form.resume.help_text %}
+                    <p class="help-text">{{ form.resume.help_text }}</p>
+                {% endif %}
+                {% for error in form.resume.errors %}
+                    <p class="help-text" style="color: var(--danger);">{{ error }}</p>
+                {% endfor %}
+            </div>
+            
+            <div class="mt-4" style="text-align: right;">
+                <button type="submit" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem; width: 100%;">
+                    Submit Application <i class='bx bx-check-circle' style="margin-left: 8px;"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const fileInput = document.querySelector('input[type="file"]');
+        if(fileInput) {
+            fileInput.classList.add('form-control');
+            fileInput.style.padding = '0.5rem';
+        }
+    });
+</script>
+{% endblock %}

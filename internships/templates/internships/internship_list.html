@@ -1,0 +1,57 @@
+{% extends 'internships/base.html' %}
+
+{% block content %}
+<div class="hero">
+    <h1>Find Your Next <span class="text-gradient">Dream Internship</span></h1>
+    <p>Discover opportunities from top companies and kickstart your career with our Internship Portal. Build your future today.</p>
+    {% if not user.is_authenticated %}
+        <a href="{% url 'internships:register' %}" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">Join the Network</a>
+    {% endif %}
+</div>
+
+<div class="container">
+    <div class="flex-between mb-3">
+        <h2>Latest Opportunities</h2>
+        <span class="text-muted">{{ internships|length }} open positions</span>
+    </div>
+
+    {% if internships %}
+        <div class="grid grid-cols-3">
+            {% for internship in internships %}
+                <div class="glass-card">
+                    <div class="mb-2">
+                        <span class="badge badge-info" style="margin-bottom: 0.5rem;"><i class='bx bx-building' style="margin-right: 5px;"></i> {{ internship.company.name }}</span>
+                        <h3 style="font-size: 1.5rem; margin-top: 0.5rem;">{{ internship.title }}</h3>
+                        <p class="text-muted" style="font-size: 0.9rem; margin-top: 0.2rem;"><i class='bx bx-map-pin'></i> {{ internship.location }}</p>
+                    </div>
+                    
+                    <p class="mb-3" style="color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-size: 0.95rem;">
+                        {{ internship.description }}
+                    </p>
+                    
+                    <div class="flex-column mb-3" style="gap: 0.5rem; font-size: 0.85rem; color: var(--text-secondary);">
+                        <div class="flex-between">
+                            <span><i class='bx bx-money'></i> Stipend:</span>
+                            <span style="color: var(--text-primary); font-weight: 600;">{{ internship.stipend|default:"Unpaid" }}</span>
+                        </div>
+                        <div class="flex-between">
+                            <span><i class='bx bx-calendar-event'></i> Apply By:</span>
+                            <span style="color: var(--text-primary); font-weight: 600;">{{ internship.application_deadline|date:"M d, Y"|default:"N/A" }}</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: auto;">
+                        <a href="{% url 'internships:detail' internship.pk %}" class="btn btn-primary" style="width: 100%;">View Details <i class='bx bx-right-arrow-alt' style="margin-left: 5px;"></i></a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <i class='bx bx-search' style="font-size: 4rem; color: var(--glass-border); margin-bottom: 1rem;"></i>
+            <h3>No Internships Available</h3>
+            <p class="text-muted">Check back later for new opportunities.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

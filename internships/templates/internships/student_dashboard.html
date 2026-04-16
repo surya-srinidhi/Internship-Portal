@@ -1,0 +1,57 @@
+{% extends 'internships/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="glass-card mb-4">
+        <h2 class="mb-1">Student Dashboard</h2>
+        <p class="text-muted">Welcome back, {{ request.user.first_name|default:request.user.username }}! Track your internship applications here.</p>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Role</th>
+                    <th>Applied On</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for app in applications %}
+                <tr>
+                    <td>
+                        <strong>{{ app.internship.company.name }}</strong>
+                    </td>
+                    <td>{{ app.internship.title }}</td>
+                    <td>{{ app.applied_at|date:"M d, Y" }}</td>
+                    <td>
+                        {% if app.status == 'Pending' %}
+                            <span class="badge badge-pending">Pending</span>
+                        {% elif app.status == 'Shortlisted' %}
+                            <span class="badge badge-shortlisted">Shortlisted</span>
+                        {% elif app.status == 'Rejected' %}
+                            <span class="badge badge-rejected">Rejected</span>
+                        {% else %}
+                            <span class="badge">{{ app.status }}</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'internships:detail' app.internship.pk %}" class="btn btn-secondary btn-sm">View Internhips</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center" style="padding: 3rem;">
+                        <i class='bx bx-briefcase' style="font-size: 3rem; color: var(--glass-border); margin-bottom: 1rem; display: block;"></i>
+                        <p class="text-muted mb-2">You haven't applied to any internships yet.</p>
+                        <a href="{% url 'internships:list' %}" class="btn btn-primary btn-sm">Browse Opportunities</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
