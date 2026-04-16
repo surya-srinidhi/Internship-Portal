@@ -61,3 +61,12 @@ python manage.py runserver
 3. **Deploy**: Push your code to GitHub, go to [Render.com](https://render.com), and create a new **Web Service**.
 4. **Link it**: Connect your GitHub. Put `pip install -r requirements.txt && python manage.py migrate` as the Build Command, and `gunicorn portal.wsgi:application` as the Start Command.
 5. **Add Environment Variables**: Add your secret keys directly into Render's dashboard. Click **Deploy**!
+
+## 📸 Screenshots
+<img width="1440" height="813" alt="Home Page" src="https://github.com/user-attachments/assets/e88d6cc2-82ed-4644-9793-38c6502c594e" />
+<img width="1440" height="813" alt="Login page" src="https://github.com/user-attachments/assets/25620207-cab5-424c-a9ce-0ee6c4ba4d31" />
+<img width="1440" height="809" alt="Register Page" src="https://github.com/user-attachments/assets/6b3074cf-1f12-44bf-b7a3-a52aa7b4b084" />
+<img width="1440" height="809" alt="Admin Portal Page" src="https://github.com/user-attachments/assets/4f593646-6bce-4d89-8cf9-28e030daacb2" />
+
+
+
